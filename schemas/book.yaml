@@ -1,14 +1,32 @@
 type: object
 properties:
   id:
-    type: integer
+    type: string
+    description: The unique identifier for the book.
+    example: "9780439554930"
+    title: Book ID
   title:
     type: string
+    description: The title of the book.
+    example: "Harry Potter and the Philosopher's Stone"
+    title: Title
   authorId:
-    type: integer
+    type: string
+    description: The unique identifier for the author of the book.
+    example: "123"
+    title: Author ID
   genreId:
-    type: integer
+    type: string
+    description: The unique identifier for the genre of the book.
+    example: "456"
+    title: Genre ID
   publisherId:
-    type: integer
+    type: string
+    description: The unique identifier for the publisher of the book.
+    example: "789"
+    title: Publisher ID
   publicationYear:
     type: integer
+    description: The publication year of the book.
+    example: 1997
+    title: Publication Year

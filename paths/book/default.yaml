@@ -1,0 +1,5 @@
+get:
+  $ref: ./getAll.yaml
+
+post:
+  $ref: ./create.yaml

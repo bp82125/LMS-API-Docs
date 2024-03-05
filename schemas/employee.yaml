@@ -1,11 +1,25 @@
 type: object
+title: Employee
 properties:
   id:
-    type: integer
+    type: string
+    description: The unique identifier for the employee.
+    example: "1"
+    title: Employee ID
+    readOnly: true
   name:
     type: string
+    description: The name of the employee.
+    example: "John Doe"
+    title: Employee Name
   birthDate:
     type: string
     format: date
+    description: The birth date of the employee.
+    example: "1990-01-01"
+    title: Employee Birth Date
   phoneNumber:
     type: string
+    description: The phone number of the employee.
+    example: "1234567890"
+    title: Employee Phone Number

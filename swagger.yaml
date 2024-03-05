@@ -32,7 +32,12 @@ tags:
     description: Mượn sách
   - name: Checkout detail
     description: Chi tiết mượn sách
-paths: {}
+paths:
+  /book:
+    $ref: ./paths/book/default.yaml
+  /book/{id}:
+    $ref: ./paths/book/withId.yaml
+
 components:
   schemas:
     Book:
@@ -51,4 +56,9 @@ components:
       $ref: ./schemas/checkout.yaml
     Checkout detail:
       $ref: ./schemas/checkout_detail.yaml
-x-original-swagger-version: "2.0"
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

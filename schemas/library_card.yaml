@@ -1,12 +1,25 @@
 type: object
+title: Library Card
 properties:
   cardNumber:
     type: string
+    description: The library card number.
+    example: "1234567890"
+    title: Card Number
   startDate:
     type: string
     format: date
+    description: The start date of the library card validity.
+    example: "2024-03-06"
+    title: Start Date
   expirationDate:
     type: string
     format: date
+    description: The expiration date of the library card.
+    example: "2025-03-06"
+    title: Expiration Date
   note:
     type: string
+    description: Additional notes about the library card.
+    example: "This card allows borrowing up to 5 books at a time."
+    title: Note

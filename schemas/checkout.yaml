@@ -1,11 +1,25 @@
 type: object
+title: Checkout
 properties:
   id:
-    type: integer
+    type: string
+    description: The unique identifier for the checkout.
+    example: "1"
+    title: Checkout ID
+    readOnly: true
   cardNumber:
     type: string
+    description: The library card number associated with the checkout.
+    example: "1234567890"
+    title: Library Card Number
   employeeId:
-    type: integer
+    type: string
+    description: The unique identifier for the employee who processed the checkout.
+    example: "2"
+    title: Employee ID
   checkoutDate:
     type: string
     format: date-time
+    description: The date and time when the checkout occurred.
+    example: "2024-03-06T10:00:00Z"
+    title: Checkout Date

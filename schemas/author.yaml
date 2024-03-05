@@ -1,10 +1,24 @@
 type: object
+title: Author
 properties:
   id:
-    type: integer
+    type: string
+    description: The unique identifier for the author.
+    example: "123"
+    title: Author ID
+    readOnly: true
   name:
     type: string
+    description: The name of the author.
+    example: "J.K. Rowling"
+    title: Author Name
   website:
     type: string
+    description: The website of the author (if available).
+    example: "https://www.jkrowling.com"
+    title: Author Website
   note:
     type: string
+    description: Additional notes about the author.
+    example: "Best known for creating the Harry Potter series."
+    title: Author Note

@@ -1,0 +1,47 @@
+summary: Create a new book
+operationId: createBook
+tags:
+  - Book
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: "../../swagger.yaml#/components/schemas/Book"
+security:
+  - bearerAuth: []
+responses:
+  "201":
+    description: Success response with the created book details
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            flag:
+              type: boolean
+              example: true
+            statusCode:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: "Book created successfully"
+            data:
+              $ref: "../../swagger.yaml#/components/schemas/Book"
+  "400":
+    description: Bad request, invalid input data
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            flag:
+              type: boolean
+              example: false
+            statusCode:
+              type: integer
+              example: 400
+            message:
+              type: string
+              example: "Bad request, invalid input data"
