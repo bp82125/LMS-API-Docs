@@ -65,7 +65,7 @@ paths:
                     type: array
                     description: List of books
                     items:
-                      $ref: "../../swagger.yaml#/components/schemas/Book"
+                      $ref: "#/components/schemas/Book"
               example:
                 flag: true
                 statusCode: 200
@@ -94,7 +94,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "../../swagger.yaml#/components/schemas/Book"
+              $ref: "#/components/schemas/Book"
       security:
         - bearerAuth: []
       responses:
@@ -115,7 +115,7 @@ paths:
                     type: string
                     example: "Book created successfully"
                   data:
-                    $ref: "../../swagger.yaml#/components/schemas/Book"
+                    $ref: "#/components/schemas/Book"
         "400":
           description: Bad request, invalid input data
           content:
@@ -166,7 +166,7 @@ paths:
                     type: string
                     example: "Book retrieved successfully"
                   data:
-                    $ref: "../../swagger.yaml#/components/schemas/Book"
+                    $ref: "#/components/schemas/Book"
         "404":
           description: Book not found
           content:
@@ -204,7 +204,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "../../swagger.yaml#/components/schemas/Book"
+              $ref: "#/components/schemas/Book"
       responses:
         "200":
           description: Success response with the updated book details
@@ -223,7 +223,7 @@ paths:
                     type: string
                     example: "Book updated successfully"
                   data:
-                    $ref: "../../swagger.yaml#/components/schemas/Book"
+                    $ref: "#/components/schemas/Book"
         "400":
           description: Bad request, invalid input data
           content:
