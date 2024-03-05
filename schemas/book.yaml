@@ -1,0 +1,14 @@
+type: object
+properties:
+  id:
+    type: integer
+  title:
+    type: string
+  authorId:
+    type: integer
+  genreId:
+    type: integer
+  publisherId:
+    type: integer
+  publicationYear:
+    type: integer

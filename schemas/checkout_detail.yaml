@@ -1,0 +1,15 @@
+type: object
+properties:
+  id:
+    type: integer
+  checkoutId:
+    type: integer
+  bookId:
+    type: integer
+  note:
+    type: string
+  returned:
+    type: boolean
+  returnDate:
+    type: string
+    format: date-time

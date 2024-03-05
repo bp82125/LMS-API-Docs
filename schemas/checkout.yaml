@@ -1,0 +1,11 @@
+type: object
+properties:
+  id:
+    type: integer
+  cardNumber:
+    type: string
+  employeeId:
+    type: integer
+  checkoutDate:
+    type: string
+    format: date-time

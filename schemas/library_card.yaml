@@ -1,0 +1,12 @@
+type: object
+properties:
+  cardNumber:
+    type: string
+  startDate:
+    type: string
+    format: date
+  expirationDate:
+    type: string
+    format: date
+  note:
+    type: string
