@@ -2,24 +2,30 @@ type: object
 title: Employee
 properties:
   id:
-    type: string
+    type: integer
+    format: int64
     description: The unique identifier for the employee.
-    example: "1"
-    title: Employee ID
+    example: 1
     readOnly: true
-  name:
+  fullName:
     type: string
-    description: The name of the employee.
-    example: "John Doe"
-    title: Employee Name
+    description: The full name of the employee.
+    example: John Doe
   birthDate:
     type: string
     format: date
     description: The birth date of the employee.
     example: "1990-01-01"
-    title: Employee Birth Date
   phoneNumber:
     type: string
     description: The phone number of the employee.
-    example: "1234567890"
-    title: Employee Phone Number
+    example: "+1234567890"
+  accountId:
+    type: integer
+    format: int64
+    description: The ID of the associated account.
+    example: 1
+  deleted:
+    type: boolean
+    description: Indicates whether the employee is marked as deleted.
+    example: false

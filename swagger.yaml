@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.1.0
 info:
   title: Hệ thống quản lí thư viện
   description:
@@ -18,7 +18,7 @@ tags:
     description: Sách
   - name: Author
     description: Tác giả
-  - name: Genre
+  - name: Category
     description: Thể loại sách
   - name: Publisher
     description: Nhà xuất bản
@@ -32,6 +32,8 @@ tags:
     description: Mượn sách
   - name: Checkout detail
     description: Chi tiết mượn sách
+  - name: Account
+    description: Tài khoản
 paths:
   /book:
     get:
@@ -315,8 +317,8 @@ components:
       $ref: ./schemas/book.yaml
     Author:
       $ref: ./schemas/author.yaml
-    Genre:
-      $ref: ./schemas/genre.yaml
+    Category:
+      $ref: ./schemas/category.yaml
     Reader:
       $ref: ./schemas/reader.yaml
     Library card:
@@ -327,6 +329,8 @@ components:
       $ref: ./schemas/checkout.yaml
     Checkout detail:
       $ref: ./schemas/checkout_detail.yaml
+    Account:
+      $ref: ./schemas/account.yaml
 
   securitySchemes:
     bearerAuth:

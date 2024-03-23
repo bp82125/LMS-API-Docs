@@ -1,31 +1,26 @@
 type: object
-title: Checkout Detail
+title: CheckoutDetail
 properties:
-  id:
-    type: string
-    description: The unique identifier for the checkout detail.
-    example: "1"
-    title: Checkout Detail ID
-    readOnly: true
-  checkout:
-    $ref: "./checkout.yaml"
-    description: The checkout associated with this detail.
-  book:
-    $ref: "./book.yaml"
-    description: The book associated with this detail.
+  checkoutId:
+    type: integer
+    format: int64
+    description: The ID of the associated checkout.
+    example: 1
+  bookId:
+    type: integer
+    format: int64
+    description: The ID of the associated book.
+    example: 1
   note:
     type: string
-    description: Additional notes about the checkout detail.
-    example: "Damaged cover"
-    title: Note
+    description: Any notes associated with the checkout detail.
+    example: "Damaged spine"
   returned:
     type: boolean
     description: Indicates whether the book has been returned.
-    example: false
-    title: Returned
+    example: true
   returnDate:
     type: string
-    format: date-time
-    description: The date and time when the book was returned.
-    example: "2024-03-06T10:00:00Z"
-    title: Return Date
+    format: date
+    description: The date the book was returned.
+    example: "2023-01-10"
