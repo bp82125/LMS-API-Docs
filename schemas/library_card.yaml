@@ -5,8 +5,7 @@ properties:
     type: integer
     format: int64
     description: The card number of the library card.
-    example: 1234567890
-    readOnly: true
+    example: 1
   startDate:
     type: string
     format: date

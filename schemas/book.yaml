@@ -6,7 +6,6 @@ properties:
     format: int64
     description: The unique identifier for the book.
     example: 1
-    readOnly: true
   bookName:
     type: string
     description: The name of the book.

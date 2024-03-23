@@ -6,7 +6,6 @@ properties:
     format: int64
     description: The unique identifier for the employee.
     example: 1
-    readOnly: true
   fullName:
     type: string
     description: The full name of the employee.
