@@ -3,7 +3,7 @@ title: LibraryCard
 properties:
   cardNumber:
     type: integer
-    format: int64
+    format: bigint(20)
     description: The card number of the library card.
     example: 1
   startDate:
@@ -18,14 +18,16 @@ properties:
     example: "2023-01-01"
   note:
     type: string
+    format: varchar(255)
     description: Any additional notes about the library card.
     example: "Student card"
   readerId:
     type: integer
-    format: int64
+    format: bigint(20)
     description: The ID of the associated reader.
     example: 1
   deleted:
     type: boolean
+    format: bit(1)
     description: Indicates whether the library card is marked as deleted.
     example: false

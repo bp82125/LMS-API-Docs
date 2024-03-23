@@ -4,7 +4,7 @@ get:
   tags:
     - Author
   parameters:
-    - name: id
+    - name: authorId
       in: path
       description: ID of the author to retrieve
       example: 1
@@ -31,6 +31,26 @@ get:
               message:
                 type: string
                 example: "Found author with id: 123"
+    "404":
+      description: Author not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 404
+              data:
+                example: null
+              message:
+                type: string
+                example: "Can not find Author with id: 1"
+              error:
+                example: null
 
 put:
   summary: Update an existing author
@@ -38,7 +58,7 @@ put:
   tags:
     - Author
   parameters:
-    - name: id
+    - name: authorId
       in: path
       description: ID of the author to update
       required: true
@@ -73,6 +93,26 @@ put:
                 example: "Author updated successfully"
               data:
                 $ref: "../../swagger.yaml#/components/responses/Author"
+    "404":
+      description: Author not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 404
+              data:
+                example: null
+              message:
+                type: string
+                example: "Can not find Author with id: 1"
+              error:
+                example: null
 
 delete:
   summary: Delete an author
@@ -80,7 +120,7 @@ delete:
   tags:
     - Author
   parameters:
-    - name: id
+    - name: authorId
       in: path
       description: ID of the author to delete
       required: true
@@ -110,4 +150,24 @@ delete:
                 type: string
                 example: "Author deleted successfully"
               error:
-                examle: null
+                example: null
+    "404":
+      description: Author not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 404
+              data:
+                example: null
+              message:
+                type: string
+                example: "Can not find Author with id: 1"
+              error:
+                example: null

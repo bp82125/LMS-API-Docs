@@ -3,20 +3,22 @@ title: CheckoutDetail
 properties:
   checkoutId:
     type: integer
-    format: int64
+    format: bigint(20)
     description: The ID of the associated checkout.
     example: 1
   bookId:
     type: integer
-    format: int64
+    format: bigint(20)
     description: The ID of the associated book.
     example: 1
   note:
     type: string
+    format: varchar(255)
     description: Any notes associated with the checkout detail.
     example: "Damaged spine"
   returned:
     type: boolean
+    format: bit(1)
     description: Indicates whether the book has been returned.
     example: true
   returnDate:

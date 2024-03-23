@@ -1,19 +1,20 @@
 get:
-  summary: Get a book by ID
-  operationId: getBookById
+  summary: Get a category by ID
+  operationId: findCategoryById
   tags:
-    - Book
+    - Category
   parameters:
-    - name: bookId
+    - name: categoryId
       in: path
-      description: ID of the book to retrieve
-      example: "1"
+      description: ID of the category to retrieve
+      example: 1
       required: true
       schema:
-        type: long
+        type: integer
+        format: int64
   responses:
     "200":
-      description: Success response with the book details
+      description: Success response with the category details
       content:
         application/json:
           schema:
@@ -26,15 +27,12 @@ get:
                 type: integer
                 example: 200
               data:
-                $ref: "../../swagger.yaml#/components/responses/Book"
+                $ref: "../../swagger.yaml#/components/responses/Category"
               message:
                 type: string
-                example: "Book retrieved successfully"
-              error:
-                example: null
-
+                example: "Found category with id: 123"
     "404":
-      description: Book not found
+      description: Category not found
       content:
         application/json:
           schema:
@@ -50,34 +48,35 @@ get:
                 example: null
               message:
                 type: string
-                example: "Can not find Book with id: 1"
+                example: "Can not find Category with id: 1"
               error:
                 example: null
 
 put:
-  summary: Update an existing book
-  operationId: updateBook
+  summary: Update an existing category
+  operationId: updateCategory
   tags:
-    - Book
+    - Category
   parameters:
-    - name: bookId
+    - name: categoryId
       in: path
-      description: ID of the book to update
+      description: ID of the category to update
       required: true
       example: 1
       schema:
-        type: long
+        type: integer
+        format: int64
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: "../../swagger.yaml#/components/requestBodies/Book"
+          $ref: "../../swagger.yaml#/components/requestBodies/Category"
   security:
     - bearerAuth: []
   responses:
     "200":
-      description: Success response with the updated book details
+      description: Success response with the updated category details
       content:
         application/json:
           schema:
@@ -91,14 +90,11 @@ put:
                 example: 200
               message:
                 type: string
-                example: "Book updated successfully"
+                example: "Category updated successfully"
               data:
-                $ref: "../../swagger.yaml#/components/responses/Book"
-              error:
-                example: null
-
+                $ref: "../../swagger.yaml#/components/responses/Category"
     "404":
-      description: Book not found
+      description: Category not found
       content:
         application/json:
           schema:
@@ -114,28 +110,29 @@ put:
                 example: null
               message:
                 type: string
-                example: "Can not find Book with id: 1"
+                example: "Can not find Category with id: 1"
               error:
                 example: null
 
 delete:
-  summary: Delete a book
-  operationId: deleteBook
+  summary: Delete a category
+  operationId: deleteCategory
   tags:
-    - Book
+    - Category
   parameters:
-    - name: bookId
+    - name: categoryId
       in: path
-      description: ID of the book to delete
+      description: ID of the category to delete
       required: true
       example: 1
       schema:
-        type: long
+        type: integer
+        format: int64
   security:
     - bearerAuth: []
   responses:
     "200":
-      description: Book successfully deleted
+      description: Category successfully deleted
       content:
         application/json:
           schema:
@@ -151,12 +148,11 @@ delete:
                 example: null
               message:
                 type: string
-                example: "Book deleted successfully"
+                example: "Category deleted successfully"
               error:
                 example: null
-
     "404":
-      description: Book not found
+      description: Category not found
       content:
         application/json:
           schema:
@@ -172,6 +168,6 @@ delete:
                 example: null
               message:
                 type: string
-                example: "Can not find Book with id: 1"
+                example: "Can not find Category with id: 1"
               error:
                 example: null

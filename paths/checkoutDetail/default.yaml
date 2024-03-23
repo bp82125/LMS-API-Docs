@@ -1,11 +1,22 @@
 get:
-  summary: Get all authors
-  operationId: findAllAuthors
+  summary: Get all details of checkout
+  operationId: findAllDetailsOfCheckout
   tags:
-    - Author
+    - CheckoutDetail
+  parameters:
+    - name: checkoutId
+      in: path
+      description: ID of the checkout to retrieve the details
+      example: 1
+      required: true
+      schema:
+        type: integer
+        format: int64
+  security:
+    - bearerAuth: []
   responses:
     "200":
-      description: Success response with a list of authors
+      description: Success response with a list of details of a checkout
       content:
         application/json:
           schema:
@@ -21,31 +32,17 @@ get:
                 example: 200
               data:
                 type: array
-                description: List of authors
+                description: List of details of a checkout
                 items:
-                  $ref: "../../swagger.yaml#/components/responses/Author"
+                  $ref: "../../swagger.yaml#/components/responses/CheckoutDetail"
               message:
                 type: string
                 description: Description of the response.
-                example: "Found authors"
+                example: "Found details of the checkout"
               error:
                 example: null
-post:
-  summary: Create a new author
-  operationId: createAuthor
-  tags:
-    - Author
-  requestBody:
-    required: true
-    content:
-      application/json:
-        schema:
-          $ref: "../../swagger.yaml#/components/requestBodies/Author"
-  security:
-    - bearerAuth: []
-  responses:
-    "201":
-      description: Success response with the created author details
+    "404":
+      description: Associated entity not found
       content:
         application/json:
           schema:
@@ -53,14 +50,14 @@ post:
             properties:
               flag:
                 type: boolean
-                example: true
+                example: false
               statusCode:
                 type: integer
-                example: 201
+                example: 404
+              data:
+                example: null
               message:
                 type: string
-                example: "Author created successfully"
-              data:
-                $ref: "../../swagger.yaml#/components/responses/Author"
+                example: "Checkout not found"
               error:
                 example: null

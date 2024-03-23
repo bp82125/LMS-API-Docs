@@ -1,11 +1,11 @@
 get:
-  summary: Get all authors
-  operationId: findAllAuthors
+  summary: Get all publishers
+  operationId: findAllPublishers
   tags:
-    - Author
+    - Publisher
   responses:
     "200":
-      description: Success response with a list of authors
+      description: Success response with a list of publishers
       content:
         application/json:
           schema:
@@ -21,31 +21,32 @@ get:
                 example: 200
               data:
                 type: array
-                description: List of authors
+                description: List of publishers
                 items:
-                  $ref: "../../swagger.yaml#/components/responses/Author"
+                  $ref: "../../swagger.yaml#/components/responses/Publisher"
               message:
                 type: string
                 description: Description of the response.
-                example: "Found authors"
+                example: "Found publishers"
               error:
                 example: null
+
 post:
-  summary: Create a new author
-  operationId: createAuthor
+  summary: Create a new publisher
+  operationId: createPublisher
   tags:
-    - Author
+    - Publisher
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: "../../swagger.yaml#/components/requestBodies/Author"
+          $ref: "../../swagger.yaml#/components/requestBodies/Publisher"
   security:
     - bearerAuth: []
   responses:
     "201":
-      description: Success response with the created author details
+      description: Success response with the created publisher details
       content:
         application/json:
           schema:
@@ -59,8 +60,8 @@ post:
                 example: 201
               message:
                 type: string
-                example: "Author created successfully"
+                example: "Publisher created successfully"
               data:
-                $ref: "../../swagger.yaml#/components/responses/Author"
+                $ref: "../../swagger.yaml#/components/responses/Publisher"
               error:
                 example: null

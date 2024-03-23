@@ -3,34 +3,36 @@ title: Book
 properties:
   id:
     type: integer
-    format: int64
+    format: bigint(20)
     description: The unique identifier for the book.
     example: 1
   bookName:
     type: string
+    format: varchar(255)
     description: The name of the book.
     example: "Harry Potter and the Philosopher's Stone"
   publicationYear:
     type: integer
-    format: int32
+    format: bigint(20)
     description: The publication year of the book.
     example: 1997
   categoryId:
     type: integer
-    format: int32
+    format: bigint(20)
     description: The ID of the category to which the book belongs.
     example: 1
   authorId:
     type: integer
-    format: int32
+    format: bigint(20)
     description: The ID of the author of the book.
     example: 1
   publisherId:
     type: integer
-    format: int32
+    format: bigint(20)
     description: The ID of the publisher of the book.
     example: 1
   deleted:
     type: boolean
+    format: bit(1)
     description: Indicates whether the book is marked as deleted.
     example: false

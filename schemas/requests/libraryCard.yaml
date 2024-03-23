@@ -1,0 +1,15 @@
+type: object
+properties:
+  cardDuration:
+    type: integer
+    minimum: 1
+    description: "Card duration is required"
+  note:
+    type: string
+    maxLength: 255
+    description: "Note must not exceed 255 characters"
+required:
+  - cardDuration
+example:
+  cardDuration: 30
+  note: "This is a sample note for the library card."

@@ -1,0 +1,9 @@
+type: object
+properties:
+  note:
+    type: string
+    nullable: true
+    example: Some notes about the checkout detail
+  returned:
+    type: boolean
+    default: false

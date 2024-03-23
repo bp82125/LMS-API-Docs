@@ -1,11 +1,11 @@
 get:
-  summary: Get all authors
-  operationId: findAllAuthors
+  summary: Get all categories
+  operationId: findAllCategories
   tags:
-    - Author
+    - Category
   responses:
     "200":
-      description: Success response with a list of authors
+      description: Success response with a list of categories
       content:
         application/json:
           schema:
@@ -21,31 +21,31 @@ get:
                 example: 200
               data:
                 type: array
-                description: List of authors
+                description: List of categories
                 items:
-                  $ref: "../../swagger.yaml#/components/responses/Author"
+                  $ref: "../../swagger.yaml#/components/responses/Category"
               message:
                 type: string
                 description: Description of the response.
-                example: "Found authors"
+                example: "Found categories"
               error:
                 example: null
 post:
-  summary: Create a new author
-  operationId: createAuthor
+  summary: Create a new category
+  operationId: createCategory
   tags:
-    - Author
+    - Category
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: "../../swagger.yaml#/components/requestBodies/Author"
+          $ref: "../../swagger.yaml#/components/requestBodies/Category"
   security:
     - bearerAuth: []
   responses:
     "201":
-      description: Success response with the created author details
+      description: Success response with the created category details
       content:
         application/json:
           schema:
@@ -59,8 +59,8 @@ post:
                 example: 201
               message:
                 type: string
-                example: "Author created successfully"
+                example: "Category created successfully"
               data:
-                $ref: "../../swagger.yaml#/components/responses/Author"
+                $ref: "../../swagger.yaml#/components/responses/Category"
               error:
                 example: null

@@ -1,0 +1,288 @@
+get:
+  summary: Get a library card by Reader ID
+  operationId: findLibraryCardByReaderId
+  tags:
+    - LibraryCard
+  parameters:
+    - name: readerId
+      in: path
+      description: ID of the reader to retrieve the libarary card
+      example: 1
+      required: true
+      schema:
+        type: integer
+        format: int64
+  security:
+    - bearerAuth: []
+  responses:
+    "200":
+      description: Success response with the library card details
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: true
+              statusCode:
+                type: integer
+                example: 200
+              data:
+                $ref: "../../swagger.yaml#/components/responses/Library_Card"
+              message:
+                type: string
+                example: "Found library card of reader with id: 1"
+              error:
+                example: null
+
+    "404":
+      description: Reader not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 404
+              data:
+                example: null
+              message:
+                type: string
+                example: "Reader not found"
+              error:
+                example: null
+
+post:
+  summary: Create a new library card
+  operationId: createLibraryCard
+  tags:
+    - LibraryCard
+  parameters:
+    - name: readerId
+      in: path
+      description: ID of the reader to retrieve the libarary card
+      example: 1
+      required: true
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../swagger.yaml#/components/requestBodies/Library_Card"
+  security:
+    - bearerAuth: []
+  responses:
+    "201":
+      description: Success response with the created library card details
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: true
+              statusCode:
+                type: integer
+                example: 201
+              message:
+                type: string
+                example: "Library card created successfully"
+              data:
+                $ref: "../../swagger.yaml#/components/responses/Library_Card"
+              error:
+                example: null
+
+    "404":
+      description: Reader not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 404
+              data:
+                example: null
+              message:
+                type: string
+                example: "Reader not found"
+              error:
+                example: null
+
+    "409":
+      description: Reader already had library card
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 409
+              data:
+                example: null
+              message:
+                type: string
+                example: "Reader with id: 1 already associated with library card with id: 2"
+              error:
+                example: null
+
+put:
+  summary: Update an existing library card
+  operationId: updateLibraryCard
+  tags:
+    - LibraryCard
+  parameters:
+    - name: readerId
+      in: path
+      description: ID of the library card to update
+      required: true
+      example: 1
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../swagger.yaml#/components/requestBodies/Library_Card"
+  security:
+    - bearerAuth: []
+  responses:
+    "200":
+      description: Success response with the updated library card details
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: true
+              statusCode:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "Library card updated successfully"
+              data:
+                $ref: "../../swagger.yaml#/components/responses/Library_Card"
+              error:
+                example: null
+
+    "404":
+      description: Reader not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 404
+              data:
+                example: null
+              message:
+                type: string
+                example: "Reader not found"
+              error:
+                example: null
+
+    "409":
+      description: Reader doesn't have any library card
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 409
+              data:
+                example: null
+              message:
+                type: string
+                example: "Reader with id: 1 currently not associated with any library card"
+              error:
+                example: null
+
+delete:
+  summary: Delete a library card
+  operationId: deleteLibraryCard
+  tags:
+    - LibraryCard
+  parameters:
+    - name: readerId
+      in: path
+      description: ID of the library card to delete
+      required: true
+      example: 1
+      schema:
+        type: integer
+        format: int64
+  security:
+    - bearerAuth: []
+  responses:
+    "200":
+      description: Library card successfully deleted
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: true
+              statusCode:
+                type: integer
+                example: 200
+              data:
+                example: null
+              message:
+                type: string
+                example: "Library card deleted successfully"
+              error:
+                example: null
+    "409":
+      description: Reader doesn't have any library card
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 409
+              data:
+                example: null
+              message:
+                type: string
+                example: "Reader with id: 1 currently not associated with any library card"
+              error:
+                example: null

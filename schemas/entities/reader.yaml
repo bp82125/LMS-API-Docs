@@ -3,21 +3,25 @@ title: Reader
 properties:
   id:
     type: string
+    format: varchar(255)
     description: The unique identifier for the reader.
     example: "1"
     title: Reader ID
   name:
     type: string
+    format: varchar(255)
     description: The name of the reader.
     example: "John Doe"
     title: Reader Name
   address:
     type: string
+    format: varchar(255)
     description: The address of the reader.
     example: "123 Main Street, Anytown"
     title: Reader Address
   cardNumber:
     type: string
+    format: varchar(255)
     description: The library card number of the reader.
     example: "1234567890"
     title: Library Card Number

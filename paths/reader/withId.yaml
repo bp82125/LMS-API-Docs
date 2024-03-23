@@ -1,19 +1,22 @@
 get:
-  summary: Get a book by ID
-  operationId: getBookById
+  summary: Get a reader by ID
+  operationId: findReaderById
   tags:
-    - Book
+    - Reader
   parameters:
-    - name: bookId
+    - name: id
       in: path
-      description: ID of the book to retrieve
-      example: "1"
+      description: ID of the reader to retrieve
+      example: 1
       required: true
       schema:
-        type: long
+        type: integer
+        format: int64
+  security:
+    - bearerAuth: []
   responses:
     "200":
-      description: Success response with the book details
+      description: Success response with the reader details
       content:
         application/json:
           schema:
@@ -26,15 +29,12 @@ get:
                 type: integer
                 example: 200
               data:
-                $ref: "../../swagger.yaml#/components/responses/Book"
+                $ref: "../../swagger.yaml#/components/responses/Reader"
               message:
                 type: string
-                example: "Book retrieved successfully"
-              error:
-                example: null
-
+                example: "Found reader with id: 1"
     "404":
-      description: Book not found
+      description: Publisher not found
       content:
         application/json:
           schema:
@@ -50,34 +50,35 @@ get:
                 example: null
               message:
                 type: string
-                example: "Can not find Book with id: 1"
+                example: "Can not find Reader with id: 1"
               error:
                 example: null
 
 put:
-  summary: Update an existing book
-  operationId: updateBook
+  summary: Update an existing reader
+  operationId: updateReader
   tags:
-    - Book
+    - Reader
   parameters:
-    - name: bookId
+    - name: id
       in: path
-      description: ID of the book to update
+      description: ID of the reader to update
       required: true
       example: 1
       schema:
-        type: long
+        type: integer
+        format: int64
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: "../../swagger.yaml#/components/requestBodies/Book"
+          $ref: "../../swagger.yaml#/components/requestBodies/Reader"
   security:
     - bearerAuth: []
   responses:
     "200":
-      description: Success response with the updated book details
+      description: Success response with the updated reader details
       content:
         application/json:
           schema:
@@ -91,14 +92,11 @@ put:
                 example: 200
               message:
                 type: string
-                example: "Book updated successfully"
+                example: "Reader updated successfully"
               data:
-                $ref: "../../swagger.yaml#/components/responses/Book"
-              error:
-                example: null
-
+                $ref: "../../swagger.yaml#/components/responses/Reader"
     "404":
-      description: Book not found
+      description: Reader not found
       content:
         application/json:
           schema:
@@ -114,28 +112,29 @@ put:
                 example: null
               message:
                 type: string
-                example: "Can not find Book with id: 1"
+                example: "Can not find Reader with id: 1"
               error:
                 example: null
 
 delete:
-  summary: Delete a book
-  operationId: deleteBook
+  summary: Delete a reader
+  operationId: deleteReader
   tags:
-    - Book
+    - Reader
   parameters:
-    - name: bookId
+    - name: id
       in: path
-      description: ID of the book to delete
+      description: ID of the reader to delete
       required: true
       example: 1
       schema:
-        type: long
+        type: integer
+        format: int64
   security:
     - bearerAuth: []
   responses:
     "200":
-      description: Book successfully deleted
+      description: Reader successfully deleted
       content:
         application/json:
           schema:
@@ -151,12 +150,11 @@ delete:
                 example: null
               message:
                 type: string
-                example: "Book deleted successfully"
+                example: "Reader deleted successfully"
               error:
                 example: null
-
     "404":
-      description: Book not found
+      description: Reader not found
       content:
         application/json:
           schema:
@@ -172,6 +170,6 @@ delete:
                 example: null
               message:
                 type: string
-                example: "Can not find Book with id: 1"
+                example: "Can not find Reader with id: 1"
               error:
                 example: null

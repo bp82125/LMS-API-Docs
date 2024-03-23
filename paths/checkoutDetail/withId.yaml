@@ -1,0 +1,267 @@
+get:
+  summary: Get all details of checkout
+  operationId: findAllDetailsOfCheckout
+  tags:
+    - CheckoutDetail
+  parameters:
+    - name: checkoutId
+      in: path
+      description: ID of the checkout to retrieve the detail
+      example: 1
+      required: true
+      schema:
+        type: integer
+        format: int64
+
+    - name: bookId
+      in: path
+      description: ID of the book to retrieve the detail
+      example: 1
+      required: true
+      schema:
+        type: integer
+        format: int64
+  security:
+    - bearerAuth: []
+  responses:
+    "200":
+      description: Success response with a details of a checkout
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                description: Indicates whether the request was successful.
+                example: true
+              statusCode:
+                type: integer
+                description: HTTP status code.
+                example: 200
+              data:
+                $ref: "../../swagger.yaml#/components/responses/CheckoutDetail"
+              message:
+                type: string
+                description: Description of the response.
+                example: "Found details of the checkout"
+    "404":
+      description: Associated entity not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 404
+              data:
+                example: null
+              message:
+                type: string
+                example: "Book not found"
+              error:
+                example: null
+
+post:
+  summary: Add detail to a checkout
+  operationId: addDetailToCheckout
+  tags:
+    - CheckoutDetail
+  parameters:
+    - name: checkoutId
+      in: path
+      description: ID of the checkout to add the detail
+      example: 1
+      required: true
+      schema:
+        type: integer
+        format: int64
+
+    - name: bookId
+      in: path
+      description: ID of the book to add as a detail
+      example: 1
+      required: true
+      schema:
+        type: integer
+        format: int64
+  security:
+    - bearerAuth: []
+  responses:
+    "201":
+      description: Success response with the added detail of a checkout
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: true
+              statusCode:
+                type: integer
+                example: 201
+              message:
+                type: string
+                example: "Detail added to checkout successfully"
+              data:
+                $ref: "../../swagger.yaml#/components/responses/CheckoutDetail"
+    "404":
+      description: Associated entity not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 404
+              data:
+                example: null
+              message:
+                type: string
+                example: "Book not found"
+              error:
+                example: null
+
+put:
+  summary: Update detail of a checkout
+  operationId: updateDetailOfCheckout
+  tags:
+    - CheckoutDetail
+  parameters:
+    - name: checkoutId
+      in: path
+      description: ID of the checkout to update the detail
+      example: 1
+      required: true
+      schema:
+        type: integer
+        format: int64
+
+    - name: bookId
+      in: path
+      description: ID of the book to update as a detail
+      example: 1
+      required: true
+      schema:
+        type: integer
+        format: int64
+  security:
+    - bearerAuth: []
+  responses:
+    "200":
+      description: Success response with the updated detail of a checkout
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: true
+              statusCode:
+                type: integer
+                example: 200
+              data:
+                $ref: "../../swagger.yaml#/components/responses/CheckoutDetail"
+              message:
+                type: string
+                example: "Detail updated for checkout successfully"
+              error:
+                example: null
+    "404":
+      description: Associated entity not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 404
+              data:
+                example: null
+              message:
+                type: string
+                example: "Book not found"
+              error:
+                example: null
+
+delete:
+  summary: Remove detail from a checkout
+  operationId: removeDetailFromCheckout
+  tags:
+    - CheckoutDetail
+  parameters:
+    - name: checkoutId
+      in: path
+      description: ID of the checkout to remove the detail from
+      example: 1
+      required: true
+      schema:
+        type: integer
+        format: int64
+
+    - name: bookId
+      in: path
+      description: ID of the book to remove as a detail
+      example: 1
+      required: true
+      schema:
+        type: integer
+        format: int64
+  security:
+    - bearerAuth: []
+  responses:
+    "200":
+      description: Success response with the removed detail of a checkout
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: true
+              statusCode:
+                type: integer
+                example: 200
+              data:
+                example: null
+              message:
+                type: string
+                example: "Detail removed from checkout successfully"
+              error:
+                example: null
+
+    "404":
+      description: Associated entity not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 404
+              data:
+                example: null
+              message:
+                type: string
+                example: "Book not found"
+              error:
+                example: null

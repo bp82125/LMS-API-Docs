@@ -1,0 +1,100 @@
+post:
+  summary: Logs a user in
+  operationId: login
+  tags:
+    - Authentication
+
+  parameters:
+    - name: username
+      in: query
+      description: The username for login
+      schema:
+        type: string
+    - name: password
+      in: query
+      description: The password for login in (clear text)
+      schema:
+        type: string
+
+  responses:
+    "200":
+      description: User info and JWT
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: true
+              statusCode:
+                type: integer
+                example: 200
+              data:
+                type: object
+                properties:
+                  accountInfo:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 2
+                      username:
+                        type: string
+                        example: user
+                      role:
+                        type: string
+                        example: user
+                      enabled:
+                        type: boolean
+                        example: true
+                      employee:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 2
+                          fullName:
+                            type: string
+                            example: Jane Dee
+                          birthDate:
+                            type: string
+                            example: "2022-01-29"
+                          phoneNumber:
+                            type: string
+                            example: "0987654321"
+                          username:
+                            type: string
+                            example: user
+                          deleted:
+                            type: boolean
+                            example: false
+                  token:
+                    type: string
+                    example: eyJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJzZWxmIiwic3ViIjoidXNlciIsImV4cCI6MTcxMTIyNjAyNSwiaWF0IjoxNzExMjE4ODI1LCJhdXRob3JpdGllcyI6IlVTRVIifQ.f75GYrTIRO8_7xYk0grrQ6lWCPnxZRKJChn5t0kLGrBrvQBwTf7a8ltiuOga22zx4gYCrXeJG9gpagWpSSp1Eqea-7pJrDLd-e92UkD089T9whJ4QRVnrSfllWYUNETcLA9v0txb1GaHoOzD_7XV1xxAZQL9LzqxO1JnvJVtxJfAG8SQGU-bnpxBewDGEnuBChoBVhhX6jkfBtTAfeES7ASc7R6AUC5e1suOhUtRoh7_LWTj-lE4Wqmv3U9n0s_Y3AFOWrBt-GeB6pRnLFDPCL1CLFPI0K2OR0iOkNlhNl8UesELZyNd4C5T29OdQxOyc-OyQwblKhcM3KhTVb5UEg
+                  message:
+                    type: string
+                    example: User info and JWT
+                  error:
+                    type: null
+    "401":
+      description: Username or password is incorrect.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 401
+              data:
+                type: string
+                example: Bad credentials
+              message:
+                type: string
+                example: Username or password is incorrect.
+              error:
+                type: null

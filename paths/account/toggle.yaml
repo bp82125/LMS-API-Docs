@@ -1,0 +1,83 @@
+patch:
+  summary: Toggle an existing account
+  operationId: toggleAccount
+  tags:
+    - Account
+  parameters:
+    - name: employeeId
+      in: path
+      description: ID of the employee to togglet their account
+      required: true
+      example: 1
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../swagger.yaml#/components/requestBodies/ToggleAccount"
+  security:
+    - bearerAuth: []
+  responses:
+    "200":
+      description: Success response with the toggled account
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: true
+              statusCode:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "Toggle account successfully"
+              data:
+                $ref: "../../swagger.yaml#/components/responses/Account"
+              error:
+                example: null
+    "404":
+      description: Employee not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 404
+              data:
+                example: null
+              message:
+                type: string
+                example: "Employee not found"
+              error:
+                example: null
+    "409":
+      description: Employee doesn't have any account
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 409
+              data:
+                example: null
+              message:
+                type: string
+                example: "Employee with id: 1 currently not associated with any account"
+              error:
+                example: null

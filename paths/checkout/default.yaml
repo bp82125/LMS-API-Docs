@@ -1,11 +1,13 @@
 get:
-  summary: Get all authors
-  operationId: findAllAuthors
+  summary: Get all checkouts
+  operationId: findAllCheckouts
   tags:
-    - Author
+    - Checkout
+  security:
+    - bearerAuth: []
   responses:
     "200":
-      description: Success response with a list of authors
+      description: Success response with a list of checkouts
       content:
         application/json:
           schema:
@@ -21,31 +23,32 @@ get:
                 example: 200
               data:
                 type: array
-                description: List of authors
+                description: List of checkouts
                 items:
-                  $ref: "../../swagger.yaml#/components/responses/Author"
+                  $ref: "../../swagger.yaml#/components/responses/Checkout"
               message:
                 type: string
                 description: Description of the response.
-                example: "Found authors"
+                example: "Found checkouts"
               error:
                 example: null
+
 post:
-  summary: Create a new author
-  operationId: createAuthor
+  summary: Create a new checkout
+  operationId: createCheckout
   tags:
-    - Author
+    - Checkout
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: "../../swagger.yaml#/components/requestBodies/Author"
+          $ref: "../../swagger.yaml#/components/requestBodies/Checkout"
   security:
     - bearerAuth: []
   responses:
     "201":
-      description: Success response with the created author details
+      description: Success response with the created checkout details
       content:
         application/json:
           schema:
@@ -59,8 +62,26 @@ post:
                 example: 201
               message:
                 type: string
-                example: "Author created successfully"
+                example: "Checkout created successfully"
               data:
-                $ref: "../../swagger.yaml#/components/responses/Author"
+                $ref: "../../swagger.yaml#/components/responses/Checkout"
+    "404":
+      description: Associated entity not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 404
+              data:
+                example: null
+              message:
+                type: string
+                example: "Reader not found"
               error:
                 example: null

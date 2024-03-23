@@ -1,0 +1,13 @@
+type: object
+properties:
+  cardNumber:
+    type: integer
+    format: int64
+    example: 1
+  employeeId:
+    type: integer
+    format: int64
+    example: 1
+required:
+  - cardNumber
+  - employeeId

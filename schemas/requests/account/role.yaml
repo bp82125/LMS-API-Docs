@@ -1,0 +1,9 @@
+type: object
+properties:
+  role:
+    type: string
+    enum:
+      - admin
+      - user
+required:
+  - role

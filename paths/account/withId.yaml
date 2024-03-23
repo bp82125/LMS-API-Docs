@@ -1,19 +1,22 @@
 get:
-  summary: Get a book by ID
-  operationId: getBookById
+  summary: Get an employee account by Employee ID
+  operationId: findAccountByEmployeeId
   tags:
-    - Book
+    - Account
   parameters:
-    - name: bookId
+    - name: employeeId
       in: path
-      description: ID of the book to retrieve
-      example: "1"
+      description: ID of the employee to retrieve the account
+      example: 1
       required: true
       schema:
-        type: long
+        type: integer
+        format: int64
+  security:
+    - bearerAuth: []
   responses:
     "200":
-      description: Success response with the book details
+      description: Success response with the employee account details
       content:
         application/json:
           schema:
@@ -26,15 +29,12 @@ get:
                 type: integer
                 example: 200
               data:
-                $ref: "../../swagger.yaml#/components/responses/Book"
+                $ref: "../../swagger.yaml#/components/responses/Account"
               message:
                 type: string
-                example: "Book retrieved successfully"
-              error:
-                example: null
-
+                example: "Found account of employee with id: 1"
     "404":
-      description: Book not found
+      description: Employee not found
       content:
         application/json:
           schema:
@@ -50,34 +50,35 @@ get:
                 example: null
               message:
                 type: string
-                example: "Can not find Book with id: 1"
+                example: "Employee not found"
               error:
                 example: null
 
-put:
-  summary: Update an existing book
-  operationId: updateBook
+post:
+  summary: Create a new account
+  operationId: createAccount
   tags:
-    - Book
+    - Account
   parameters:
-    - name: bookId
+    - name: employeeId
       in: path
-      description: ID of the book to update
-      required: true
+      description: ID of the employee to create the account for
       example: 1
+      required: true
       schema:
-        type: long
+        type: integer
+        format: int64
   requestBody:
     required: true
     content:
       application/json:
         schema:
-          $ref: "../../swagger.yaml#/components/requestBodies/Book"
+          $ref: "../../swagger.yaml#/components/requestBodies/CreateAccount"
   security:
     - bearerAuth: []
   responses:
-    "200":
-      description: Success response with the updated book details
+    "201":
+      description: Success response with the created account details
       content:
         application/json:
           schema:
@@ -88,17 +89,16 @@ put:
                 example: true
               statusCode:
                 type: integer
-                example: 200
+                example: 201
               message:
                 type: string
-                example: "Book updated successfully"
+                example: "Account created successfully"
               data:
-                $ref: "../../swagger.yaml#/components/responses/Book"
+                $ref: "../../swagger.yaml#/components/responses/Account"
               error:
                 example: null
-
     "404":
-      description: Book not found
+      description: Employee not found
       content:
         application/json:
           schema:
@@ -114,28 +114,49 @@ put:
                 example: null
               message:
                 type: string
-                example: "Can not find Book with id: 1"
+                example: "Employee not found"
+              error:
+                example: null
+    "409":
+      description: Employee already has an account
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 409
+              data:
+                example: null
+              message:
+                type: string
+                example: "Employee with id: 1 already has an associated account"
               error:
                 example: null
 
 delete:
-  summary: Delete a book
-  operationId: deleteBook
+  summary: Delete an account
+  operationId: deleteAccount
   tags:
-    - Book
+    - Account
   parameters:
-    - name: bookId
+    - name: employeeId
       in: path
-      description: ID of the book to delete
+      description: ID of the account to delete
       required: true
       example: 1
       schema:
-        type: long
+        type: integer
+        format: int64
   security:
     - bearerAuth: []
   responses:
     "200":
-      description: Book successfully deleted
+      description: Account successfully deleted
       content:
         application/json:
           schema:
@@ -151,12 +172,11 @@ delete:
                 example: null
               message:
                 type: string
-                example: "Book deleted successfully"
+                example: "Account deleted successfully"
               error:
                 example: null
-
-    "404":
-      description: Book not found
+    "409":
+      description: Employee doesn't have any account
       content:
         application/json:
           schema:
@@ -167,11 +187,11 @@ delete:
                 example: false
               statusCode:
                 type: integer
-                example: 404
+                example: 409
               data:
                 example: null
               message:
                 type: string
-                example: "Can not find Book with id: 1"
+                example: "Employee with id: 1 currently not associated with any account"
               error:
                 example: null

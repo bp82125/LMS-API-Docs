@@ -28,7 +28,8 @@ get:
                 type: string
                 description: Description of the response.
                 example: "Books retrieved successfully"
-
+              error:
+                example: null
 post:
   summary: Create a new book
   operationId: createBook
