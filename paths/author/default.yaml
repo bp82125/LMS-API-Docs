@@ -1,0 +1,63 @@
+get:
+  summary: Get all authors
+  operationId: findAllAuthors
+  tags:
+    - Author
+  responses:
+    "200":
+      description: Success response with a list of authors
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                description: Indicates whether the request was successful.
+                example: true
+              statusCode:
+                type: integer
+                description: HTTP status code.
+                example: 200
+              data:
+                type: array
+                description: List of authors
+                items:
+                  $ref: "../../swagger.yaml#/components/responses/Author"
+              message:
+                type: string
+                description: Description of the response.
+                example: "Found authors"
+
+post:
+  summary: Create a new author
+  operationId: createAuthor
+  tags:
+    - Author
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../swagger.yaml#/components/requestBodies/Author"
+  security:
+    - bearerAuth: []
+  responses:
+    "201":
+      description: Success response with the created author details
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: true
+              statusCode:
+                type: integer
+                example: 201
+              message:
+                type: string
+                example: "Author created successfully"
+              data:
+                $ref: "../../swagger.yaml#/components/responses/Author"

@@ -1,0 +1,28 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+    nullable: true
+    example: 1
+  publisherName:
+    type: string
+    example: Example Publisher
+  address:
+    type: string
+    example: 123 Main St, City, Country
+  email:
+    type: string
+    example: example@example.com
+  representativeInfo:
+    type: string
+    example: John Doe - CEO
+  numberOfBooks:
+    type: integer
+    example: 20
+required:
+  - publisherName
+  - address
+  - email
+  - representativeInfo
+  - numberOfBooks

@@ -2,29 +2,24 @@ type: object
 title: Publisher
 properties:
   id:
-    type: string
+    type: integer
+    format: int32
     description: The unique identifier for the publisher.
-    example: "1"
-    title: Publisher ID
-    readOnly: true
-  name:
+    example: 1
+  publisherName:
     type: string
     description: The name of the publisher.
-    example: "Bloomsbury Publishing"
-    title: Publisher Name
+    example: Bloomsbury Publishing
   address:
     type: string
     description: The address of the publisher.
-    example: "123 Main Street, London, UK"
-    title: Publisher Address
+    example: 50 Bedford Square, London, WC1B 3DP, UK
   email:
     type: string
-    description: The email address of the publisher.
-    example: "info@bloomsbury.com"
-    title: Publisher Email
     format: email
+    description: The email address of the publisher.
+    example: info@bloomsbury.com
   representativeInfo:
     type: string
     description: Information about the publisher's representative.
-    example: "John Doe - Sales Manager"
-    title: Publisher Representative Information
+    example: John Doe, Senior Editor

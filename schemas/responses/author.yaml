@@ -1,0 +1,24 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int64
+    nullable: true
+    example: 1
+  authorName:
+    type: string
+    example: John Doe
+  website:
+    type: string
+    example: https://example.com
+  note:
+    type: string
+    example: Some notes about the author
+  numberOfBooks:
+    type: integer
+    example: 5
+required:
+  - authorName
+  - website
+  - note
+  - numberOfBooks

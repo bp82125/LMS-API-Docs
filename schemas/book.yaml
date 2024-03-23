@@ -1,32 +1,36 @@
 type: object
+title: Book
 properties:
   id:
-    type: string
+    type: integer
+    format: int64
     description: The unique identifier for the book.
-    example: "9780439554930"
-    title: Book ID
-  title:
+    example: 1
+  bookName:
     type: string
-    description: The title of the book.
+    description: The name of the book.
     example: "Harry Potter and the Philosopher's Stone"
-    title: Title
-  authorId:
-    type: string
-    description: The unique identifier for the author of the book.
-    example: "123"
-    title: Author ID
-  genreId:
-    type: string
-    description: The unique identifier for the genre of the book.
-    example: "456"
-    title: Genre ID
-  publisherId:
-    type: string
-    description: The unique identifier for the publisher of the book.
-    example: "789"
-    title: Publisher ID
   publicationYear:
     type: integer
+    format: int32
     description: The publication year of the book.
     example: 1997
-    title: Publication Year
+  categoryId:
+    type: integer
+    format: int32
+    description: The ID of the category to which the book belongs.
+    example: 1
+  authorId:
+    type: integer
+    format: int32
+    description: The ID of the author of the book.
+    example: 1
+  publisherId:
+    type: integer
+    format: int32
+    description: The ID of the publisher of the book.
+    example: 1
+  deleted:
+    type: boolean
+    description: Indicates whether the book is marked as deleted.
+    example: false

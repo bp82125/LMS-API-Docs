@@ -1,5 +1,117 @@
 get:
-  $ref: ./getAll.yaml
+  summary: Get all books
+  operationId: getAllBooks
+  tags:
+    - Book
+  responses:
+    "200":
+      description: Success response with a list of books
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                description: Indicates whether the request was successful.
+                example: true
+              statusCode:
+                type: integer
+                description: HTTP status code.
+                example: 200
+              data:
+                type: array
+                description: List of books
+                items:
+                  $ref: "../../swagger.yaml#/components/responses/Book"
+              message:
+                type: string
+                description: Description of the response.
+                example: "Books retrieved successfully"
 
 post:
-  $ref: ./create.yaml
+  summary: Create a new book
+  operationId: createBook
+  tags:
+    - Book
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../swagger.yaml#/components/requestBodies/Book"
+  security:
+    - bearerAuth: []
+  responses:
+    "201":
+      description: Success response with the created book details
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: true
+              statusCode:
+                type: integer
+                example: 201
+              message:
+                type: string
+                example: "Book created successfully"
+              data:
+                $ref: "../../swagger.yaml#/components/responses/Book"
+    "400":
+      description: Bad request, invalid input data
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 400
+              message:
+                type: string
+                example: "Validation failed"
+              error:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                      description: The name of the field with the validation error.
+                    error:
+                      type: string
+                      description: The error message associated with the field.
+                example:
+                  - field: "authorId"
+                    error: "Author ID must be positive"
+                  - field: "categoryId"
+                    error: "Category ID must be positive"
+                  - field: "publisherId"
+                    error: "Publisher ID must be positive"
+    "404":
+      description: Associated entity not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 404
+              data:
+                example: null
+              message:
+                type: string
+                example: "Can not find Author with id: 110"
+              error:
+                example: null

@@ -1,0 +1,113 @@
+get:
+  summary: Get an author by ID
+  operationId: findAuthorById
+  tags:
+    - Author
+  parameters:
+    - name: id
+      in: path
+      description: ID of the author to retrieve
+      example: 1
+      required: true
+      schema:
+        type: integer
+        format: int64
+  responses:
+    "200":
+      description: Success response with the author details
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: true
+              statusCode:
+                type: integer
+                example: 200
+              data:
+                $ref: "../../swagger.yaml#/components/responses/Author"
+              message:
+                type: string
+                example: "Found author with id: 123"
+
+put:
+  summary: Update an existing author
+  operationId: updateAuthor
+  tags:
+    - Author
+  parameters:
+    - name: id
+      in: path
+      description: ID of the author to update
+      required: true
+      example: 1
+      schema:
+        type: integer
+        format: int64
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../swagger.yaml#/components/requestBodies/Author"
+  security:
+    - bearerAuth: []
+  responses:
+    "200":
+      description: Success response with the updated author details
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: true
+              statusCode:
+                type: integer
+                example: 200
+              message:
+                type: string
+                example: "Author updated successfully"
+              data:
+                $ref: "../../swagger.yaml#/components/responses/Author"
+
+delete:
+  summary: Delete an author
+  operationId: deleteAuthor
+  tags:
+    - Author
+  parameters:
+    - name: id
+      in: path
+      description: ID of the author to delete
+      required: true
+      example: 1
+      schema:
+        type: integer
+        format: int64
+  security:
+    - bearerAuth: []
+  responses:
+    "200":
+      description: Author successfully deleted
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: true
+              statusCode:
+                type: integer
+                example: 200
+              data:
+                example: null
+              message:
+                type: string
+                example: "Author deleted successfully"
+              error:
+                examle: null

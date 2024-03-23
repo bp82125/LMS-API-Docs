@@ -1,0 +1,20 @@
+type: object
+properties:
+  publisherName:
+    type: string
+    minLength: 1
+    example: Example Publisher
+  address:
+    type: string
+    maxLength: 255
+    example: 123 Main St, City, Country
+  email:
+    type: string
+    maxLength: 255
+    example: example@example.com
+  representativeInfo:
+    type: string
+    maxLength: 255
+    example: John Doe - CEO
+required:
+  - publisherName

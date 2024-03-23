@@ -1,0 +1,28 @@
+type: object
+title: Account
+properties:
+  id:
+    type: integer
+    format: int64
+    description: The unique identifier for the account.
+    example: 1
+  username:
+    type: string
+    description: The username of the account.
+    example: johndoe
+  password:
+    type: string
+    description: The hashed password of the account.
+    example: "$2a$12$xxxxxx"
+    readOnly: true
+  role:
+    type: string
+    description: The role of the account.
+    enum:
+      - ADMIN
+      - USER
+    example: ADMIN
+  enabled:
+    type: boolean
+    description: Indicates whether the account is enabled.
+    example: true

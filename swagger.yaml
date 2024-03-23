@@ -1,313 +1,51 @@
-openapi: 3.0.1
+openapi: 3.1.0
 info:
-  title: Hệ thống quản lí thư viện
+  title: Library Management System
   description:
-    "Báo cáo nhóm môn học Quản trị dữ liệu CT467, đề tài: Xây dựng hệ thống quản lí thư viện. \n\n
-    \ Xem thêm về đề tài này ở đây: \n\n
-    \ - Front end: [https://github.com/nTrong128/LibraryManagementSystem](https://github.com/nTrong128/LibraryManagementSystem) \n\n
-    \ - Back end: [https://github.com/bp82125/qtdt-be](https://github.com/bp82125/qtdt-be)
+    "This is the project report for the CT467 Data Management course group, with the topic: Library Management System. \n\n
+    \ More about this project can be found here: \n\n
+    \ - Frontend: [https://github.com/nTrong128/LibraryManagementSystem](https://github.com/nTrong128/LibraryManagementSystem) \n\n
+    \ - Backend: [https://github.com/bp82125/qtdt-be](https://github.com/bp82125/qtdt-be)
     \  "
   version: 1.0.0
 externalDocs:
-  description: Source của trang documentation này
+  description: Source of this documentation page
   url: https://github.com/bp82125/qtdt-api-docs
 servers:
   - url: http://localhost:8080/api/v1
 tags:
   - name: Book
-    description: Sách
+    description: Book operations
   - name: Author
-    description: Tác giả
-  - name: Genre
-    description: Thể loại sách
+    description: Author operations
+  - name: Category
+    description: Book category operations
   - name: Publisher
-    description: Nhà xuất bản
+    description: Publisher operations
   - name: Reader
-    description: Độc giả
+    description: Reader operations
   - name: Library card
-    description: Thẻ thư viện
+    description: Library card operations
   - name: Employee
-    description: Nhân viên
+    description: Employee operations
   - name: Checkout
-    description: Mượn sách
+    description: Book checkout operations
   - name: Checkout detail
-    description: Chi tiết mượn sách
+    description: Checkout detail operations
+  - name: Account
+    description: Account operations
 paths:
-  /book:
-    get:
-      summary: Get all books
-      operationId: getAllBooks
-      tags:
-        - Book
-      security:
-        - bearerAuth: []
-      responses:
-        "200":
-          description: Success response with a list of books
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  flag:
-                    type: boolean
-                    description: Indicates whether the request was successful.
-                    example: true
-                  statusCode:
-                    type: integer
-                    description: HTTP status code.
-                    example: 200
-                  message:
-                    type: string
-                    description: Description of the response.
-                    example: "Books retrieved successfully"
-                  data:
-                    type: array
-                    description: List of books
-                    items:
-                      $ref: "#/components/schemas/Book"
-              example:
-                flag: true
-                statusCode: 200
-                message: "Books retrieved successfully"
-                data:
-                  - id: "9780439554930"
-                    title: "Harry Potter and the Philosopher's Stone"
-                    authorId: "123"
-                    genreId: "456"
-                    publisherId: "789"
-                    publicationYear: 1997
-                  - id: "9780439554893"
-                    title: "Harry Potter and the Chamber of Secrets"
-                    authorId: "123"
-                    genreId: "456"
-                    publisherId: "789"
-                    publicationYear: 1998
+  /books:
+    $ref: "./paths/book/default.yaml"
 
-    post:
-      summary: Create a new book
-      operationId: createBook
-      tags:
-        - Book
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Book"
-      security:
-        - bearerAuth: []
-      responses:
-        "201":
-          description: Success response with the created book details
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  flag:
-                    type: boolean
-                    example: true
-                  statusCode:
-                    type: integer
-                    example: 201
-                  message:
-                    type: string
-                    example: "Book created successfully"
-                  data:
-                    $ref: "#/components/schemas/Book"
-        "400":
-          description: Bad request, invalid input data
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  flag:
-                    type: boolean
-                    example: false
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: "Bad request, invalid input data"
-  /book/{id}:
-    get:
-      summary: Get a book by ID
-      operationId: getBookById
-      tags:
-        - Book
-      parameters:
-        - name: id
-          in: path
-          description: ID of the book to retrieve
-          example: "123"
-          required: true
-          schema:
-            type: string
-      security:
-        - bearerAuth: []
-      responses:
-        "200":
-          description: Success response with the book details
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  flag:
-                    type: boolean
-                    example: true
-                  statusCode:
-                    type: integer
-                    example: 200
-                  message:
-                    type: string
-                    example: "Book retrieved successfully"
-                  data:
-                    $ref: "#/components/schemas/Book"
-        "404":
-          description: Book not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  flag:
-                    type: boolean
-                    example: false
-                  statusCode:
-                    type: integer
-                    example: 404
-                  message:
-                    type: string
-                    example: "Book not found"
-                  data:
-                    example: null
+  /books/{bookId}:
+    $ref: "./paths/book/withId.yaml"
 
-    put:
-      summary: Update an existing book
-      operationId: updateBook
-      tags:
-        - Book
-      parameters:
-        - name: id
-          in: path
-          description: ID of the book to update
-          required: true
-          example: 123
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/Book"
-      responses:
-        "200":
-          description: Success response with the updated book details
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  flag:
-                    type: boolean
-                    example: true
-                  statusCode:
-                    type: integer
-                    example: 200
-                  message:
-                    type: string
-                    example: "Book updated successfully"
-                  data:
-                    $ref: "#/components/schemas/Book"
-        "400":
-          description: Bad request, invalid input data
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  flag:
-                    type: boolean
-                    example: false
-                  statusCode:
-                    type: integer
-                    example: 400
-                  message:
-                    type: string
-                    example: "Bad request, invalid input data"
-        "404":
-          description: Book not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  flag:
-                    type: boolean
-                    example: false
-                  statusCode:
-                    type: integer
-                    example: 404
-                  message:
-                    type: string
-                    example: "Book not found"
+  /authors:
+    $ref: "./paths/author/default.yaml"
 
-    delete:
-      summary: Delete a book
-      operationId: deleteBook
-      tags:
-        - Book
-      parameters:
-        - name: id
-          in: path
-          description: ID of the book to delete
-          required: true
-          example: 123
-          schema:
-            type: string
-      responses:
-        "204":
-          description: Book successfully deleted
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  flag:
-                    type: boolean
-                    example: true
-                  statusCode:
-                    type: integer
-                    example: 204
-                  message:
-                    type: string
-                    example: "Deleted success"
-                  data:
-                    example: null
-
-        "404":
-          description: Book not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  flag:
-                    type: boolean
-                    example: false
-                  statusCode:
-                    type: integer
-                    example: 404
-                  message:
-                    type: string
-                    example: "Book not found"
-                  data:
-                    example: null
+  /authors/{authorId}:
+    $ref: "./paths/author/withId.yaml"
 
 components:
   schemas:
@@ -315,8 +53,8 @@ components:
       $ref: ./schemas/book.yaml
     Author:
       $ref: ./schemas/author.yaml
-    Genre:
-      $ref: ./schemas/genre.yaml
+    Category:
+      $ref: ./schemas/category.yaml
     Reader:
       $ref: ./schemas/reader.yaml
     Library card:
@@ -327,7 +65,28 @@ components:
       $ref: ./schemas/checkout.yaml
     Checkout detail:
       $ref: ./schemas/checkout_detail.yaml
+    Account:
+      $ref: ./schemas/account.yaml
 
+  responses:
+    Author:
+      $ref: ./schemas/responses/author.yaml
+    Book:
+      $ref: ./schemas/responses/book.yaml
+    Publisher:
+      $ref: ./schemas/responses/publisher.yaml
+    Category:
+      $ref: ./schemas/responses/category.yaml
+
+  requestBodies:
+    Author:
+      $ref: ./schemas/requests/author.yaml
+    Book:
+      $ref: ./schemas/requests/book.yaml
+    Publisher:
+      $ref: ./schemas/requests/publisher.yaml
+    Category:
+      $ref: ./schemas/requests/category.yaml
   securitySchemes:
     bearerAuth:
       type: http
