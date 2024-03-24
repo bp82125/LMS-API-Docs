@@ -107,7 +107,7 @@ paths:
   /employees/{employeeId}/accounts/password-reset:
     $ref: "./paths/account/password.yaml"
 
-  /auth/login:
+  /auths/login:
     $ref: "./paths/auth/login.yaml"
 components:
   schemas:
