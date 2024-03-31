@@ -5,12 +5,12 @@ info:
     "This is the project report for the CT467 Data Management course group, with the topic: Library Management System. \n\n
     \ More about this project can be found here: \n\n
     \ - Frontend: [https://github.com/nTrong128/LibraryManagementSystem](https://github.com/nTrong128/LibraryManagementSystem) \n\n
-    \ - Backend: [https://github.com/bp82125/qtdt-be](https://github.com/bp82125/qtdt-be)
+    \ - Backend: [https://github.com/bp82125/LMS-Server](https://github.com/bp82125/LMS-Server)
     \  "
   version: 1.0.0
 externalDocs:
   description: Source of this documentation page
-  url: https://github.com/bp82125/qtdt-api-docs
+  url: https://github.com/bp82125/LMS-API-Docs
 servers:
   - url: http://localhost:8080/api/v1
 tags:
