@@ -20,6 +20,9 @@ properties:
   numberOfBooks:
     type: integer
     example: 20
+  deleted:
+    type: boolean
+    example: false
 required:
   - publisherName
   - address

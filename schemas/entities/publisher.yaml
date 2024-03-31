@@ -26,3 +26,8 @@ properties:
     format: varchar(255)
     description: Information about the publisher's representative.
     example: John Doe, Senior Editor
+  deleted:
+    type: boolean
+    format: bit(1)
+    description: Indicates whether the publisher is marked as deleted.
+    example: false
