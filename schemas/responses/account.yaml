@@ -31,16 +31,12 @@ properties:
         type: string
         format: date
         example: "1990-01-01"
-      phoneNumber:
-        type: string
-        example: +1234567890
-      username:
-        type: string
-        nullable: true
-        example: johndoe123
       deleted:
         type: boolean
         example: false
+      phoneNumber:
+        type: string
+        example: +1234567890
     required:
       - fullName
       - birthDate

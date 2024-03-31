@@ -61,3 +61,194 @@ get:
                 example: "Checkout not found"
               error:
                 example: null
+
+post:
+  summary: Add multiple details to a checkout
+  operationId: addMultipleDetailsToCheckout
+  tags:
+    - CheckoutDetail
+  parameters:
+    - name: checkoutId
+      in: path
+      description: ID of the checkout to add the details
+      example: 1
+      required: true
+      schema:
+        type: integer
+        format: int64
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              bookId:
+                type: integer
+                format: int64
+                description: ID of the book to add as a detail
+                example: 3
+              note:
+                type: string
+                nullable: true
+                description: Additional note for the detail
+                example: "AAAAAAAAAAA"
+              returned:
+                type: boolean
+                description: Indicates if the book has been returned
+                example: false
+          example:
+            - bookId: 3
+              note: "This is a note about the first checkout detail"
+
+  security:
+    - bearerAuth: []
+
+  responses:
+    "201":
+      description: Success response with the added details of a checkout
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: true
+              statusCode:
+                type: integer
+                example: 201
+              data:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    checkoutId:
+                      type: integer
+                      example: 1
+                    book:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 3
+                        bookName:
+                          type: string
+                          example: "The Catcher in the Rye"
+                        publicationYear:
+                          type: integer
+                          example: 1951
+                        author:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            authorName:
+                              type: string
+                              example: "J.D. Salinger"
+                            website:
+                              type: string
+                              example: "https://en.wikipedia.org/wiki/J._D._Salinger"
+                            note:
+                              type: string
+                              example: "American writer known for his novel 'The Catcher in the Rye'"
+                            numberOfBooks:
+                              type: integer
+                              example: 1
+                        category:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 2
+                            categoryName:
+                              type: string
+                              example: "Fiction"
+                            numberOfBooks:
+                              type: integer
+                              example: 5
+                        publisher:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 2
+                            publisherName:
+                              type: string
+                              example: "Little, Brown and Company"
+                            address:
+                              type: string
+                              example: "New York, NY"
+                            email:
+                              type: string
+                              example: "info@littlebrown.com"
+                            representativeInfo:
+                              type: string
+                              example: "Representative: John Doe"
+                            numberOfBooks:
+                              type: integer
+                              example: 10
+                        deleted:
+                          type: boolean
+                          example: false
+                    note:
+                      type: string
+                      example: "This is a note about the first checkout detail"
+                    returned:
+                      type: boolean
+                      example: false
+                    returnDate:
+                      type: string
+                      format: date-time
+                      example: null
+              message:
+                type: string
+                example: "Created 1 detail(s) for checkoutId: 1"
+              error:
+                example: null
+
+    "404":
+      description: Associated entity not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 404
+              data:
+                example: null
+              message:
+                type: string
+                example: "Checkout not found"
+              error:
+                example: null
+
+    "409":
+      description: Entity already associated
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 409
+              data:
+                example: null
+              message:
+                type: string
+                example: "Checkout detail already exists for this book"
+              error:
+                example: null

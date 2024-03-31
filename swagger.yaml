@@ -171,6 +171,9 @@ components:
       $ref: ./schemas/requests/checkout.yaml
     CheckoutDetail:
       $ref: ./schemas/requests/checkoutDetail.yaml
+
+    CheckoutDetailForList:
+      $ref: ./schemas/requests/checkoutDetailForList.yaml
     CreateAccount:
       $ref: ./schemas/requests/account/create.yaml
     UpdateRoleAccount:

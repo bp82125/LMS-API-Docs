@@ -66,6 +66,27 @@ get:
               error:
                 example: null
 
+    "409":
+      description: Entity already associated
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              flag:
+                type: boolean
+                example: false
+              statusCode:
+                type: integer
+                example: 409
+              data:
+                example: null
+              message:
+                type: string
+                example: "Checkout detail already exists for this book"
+              error:
+                example: null
+
 post:
   summary: Add detail to a checkout
   operationId: addDetailToCheckout
