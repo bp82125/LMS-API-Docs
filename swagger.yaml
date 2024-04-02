@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: Library Management System
   description:
-    "This is the project report for the CT467 Data Management course group, with the topic: Library Management System. \n\n
+    "This is the API documentation for the CT467 - Data Management course's group project, with the topic: Library Management System. \n\n
     \ More about this project can be found here: \n\n
     \ - Frontend: [https://github.com/nTrong128/LibraryManagementSystem](https://github.com/nTrong128/LibraryManagementSystem) \n\n
     \ - Backend: [https://github.com/bp82125/LMS-Server](https://github.com/bp82125/LMS-Server)
